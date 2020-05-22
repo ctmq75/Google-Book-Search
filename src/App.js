@@ -41,7 +41,6 @@ export default class App extends Component {
     e.preventDefault();
     console.log("submit handled!");
 
-    //Creating a query
     const baseUrl =
       "https://www.googleapis.com/books/v1/volumes?q=search+terms";
     let printType = `$printType=${this.state.isPrintType}`;
@@ -53,9 +52,6 @@ export default class App extends Component {
 
     const queryString = `${baseUrl}?q=${searchEntry}&${filter}&${printType}`;
 
-    console.log(queryString);
-
-    //perform search
     fetch(queryString)
       .then(response => {
         if (response.ok) {
@@ -95,12 +91,10 @@ export default class App extends Component {
     return (
       <div className="App">
         <BookSearch
-          // searchResults={searchResults}
           selectOptions={selectOptions}
           printChangeHandler={sel => this.setPrintSelected(sel)}
           bookChangeHandler={sel => this.setBookSelected(sel)}
           handleSubmit={e => this.handleSubmit(e)}
-          //bookChangeHandler={this.setBookSelected}
           handleSearchInput={inp => this.searchInput(inp)}
         />
         <BookSearchList filterBookInfo={this.state.searchResults} />
